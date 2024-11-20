@@ -155,8 +155,8 @@ def main():
     @st.cache_resource
     def load_recommender():
         return MovieRecommender(
-            r"dataset\tmdb_5000_movies.csv",
-            r"dataset\tmdb_5000_credits.csv",
+            "dataset/tmdb_5000_movies.csv",
+            "dataset/tmdb_5000_credits.csv",
         )
 
     try:
