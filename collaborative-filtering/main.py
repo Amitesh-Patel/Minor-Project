@@ -7,6 +7,7 @@ from sklearn.preprocessing import MinMaxScaler
 import json
 import nltk
 import plotly.express as px
+import os
 
 try:
     nltk.data.find("tokenizers/punkt")
@@ -154,10 +155,12 @@ def main():
     # Initialize recommender
     @st.cache_resource
     def load_recommender():
-        return MovieRecommender(
-            "dataset/tmdb_5000_movies.csv",
-            "dataset/tmdb_5000_credits.csv",
-        )
+        base_path = os.path.dirname(
+            os.path.abspath(__file__)
+        )  # Get current script directory
+        movies_path = os.path.join(base_path, "dataset/tmdb_5000_movies.csv")
+        credits_path = os.path.join(base_path, "dataset/tmdb_5000_credits.csv")
+        return MovieRecommender(movies_path, credits_path)
 
     try:
         recommender = load_recommender()
